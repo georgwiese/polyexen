@@ -328,6 +328,11 @@ impl<F: PrimeField<Repr = [u8; 32]>> Circuit<F> for PlafH2Circuit {
         config: Self::Config,
         mut layouter: impl Layouter<F>,
     ) -> Result<(), Error> {
+        for (i, challenge) in config.columns.challenges.into_iter().enumerate() {
+            let challenge = layouter.get_challenge(challenge);
+            challenge.map(|challenge| println!("challenge {i}: {:?}", challenge));
+        }
+
         layouter.assign_region(
             || "main",
             |mut region| {
