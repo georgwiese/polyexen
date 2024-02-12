@@ -118,7 +118,7 @@ pub struct Challenge {
 }
 
 impl Challenge {
-    fn new(name: String, phase: usize) -> Self {
+    pub fn new(name: String, phase: usize) -> Self {
         Self {
             name,
             alias: None,
